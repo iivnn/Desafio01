@@ -1,0 +1,44 @@
+<div div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalLabel">Novo Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--body-->
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <input type="hidden" id="id"  name="id" [(ngModel)]="id">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" [(ngModel)]="nome" required name="nome">
+          </div>
+          <div class="mb-3">
+            <label for="sobrenome" class="form-label">Sobrenome</label>
+            <input type="text" class="form-control" id="sobrenome" [(ngModel)]="sobrenome" required ngModel name="sobrenome">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="email" required email name="email">
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" id="date" max={{maxDate}} [(ngModel)]="dataNascimento" required name="dataNascimento">
+          </div>
+          <div class="mb-4">
+            <label for="escolaridade" class="form-label">Escolaridade</label>
+            <select class="form-select" aria-label="Default select example" id="escolaridade" [(ngModel)]="escolaridade" required name="escolaridade">
+              <option value="0" disabled>Selecione</option>
+              <option value="1">Infantil</option>
+              <option value="2">Fundamental</option>
+              <option value="3">Medio</option>
+              <option value="4">Superior</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" [disabled]="!f.valid || escolaridade == 0">Enviar</button>
+        </form>
+        <!--body-->
+      </div>
+    </div>
+  </div>
+</div>

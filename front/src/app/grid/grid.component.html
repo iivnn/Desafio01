@@ -1,0 +1,68 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Data de Nascimento</th>
+        <th scope="col">Escolaridade</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="users.length > 0">
+      <tr *ngFor="let user of getUsersByPagination()">
+        <ng-template [ngIf]="user.id != 0" [ngIfElse]="vazio">
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.nome}}</td>
+          <td>{{user.sobrenome}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.dataNascimento}}</td>
+          <td>{{user.escolaridade}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" (click)="editarButtonClick(user)">
+              Editar
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="excluirButtonClick(user.id)">
+              Excluir
+            </button>
+          </td>
+        </ng-template>
+        <ng-template #vazio>
+          <th scope="row"></th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" style="visibility: hidden">
+              Excluir
+            </button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="users.length == 0" class="alert alert-info" role="alert">
+    Nenhum usuário encontrado. Cadastre novos usuários para visualizar eles aqui :)
+  </div>
+</div>
+<div class="d-flex flex-row-reverse me-3">
+  <nav *ngIf="users.length > 0" aria-label="Page navigation">
+    <ul class="pagination">
+      <div *ngFor="let number of getPaginationCount()">
+        <li [ngClass]="page == number? 'page-item active me-1': 'page-item me-1'"><a class="page-link" href="#top" (click)="onPaginationChange(number)">{{number}}</a></li>
+      </div>
+    </ul>
+  </nav>
+</div>
+
+
+
