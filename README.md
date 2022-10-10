@@ -41,3 +41,10 @@ Inicie a API
   
   se necessário altere a string de conexão do bando em appsettings.json
 ```
+
+
+## Stack utilizada
+
+**Front-end:** Angular, Bootstrap
+
+**Back-end:** .net 6
